@@ -519,7 +519,7 @@ function initRenderer() {
 
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     //renderer.setClearColor(clearColor);
-    renderer.setPixelRatio(window.devicePixelRatio * 1.5);
+    renderer.setPixelRatio(window.devicePixelRatio * 0.9);
     renderer.setSize(window.innerWidth, window.innerHeight);
     //renderer.outputEncoding = THREE.sRGBEncoding; //Bright 
     renderer.shadowMap.enabled = true;
