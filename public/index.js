@@ -1,38 +1,38 @@
-import * as THREE from '../build/three.module.js';
-import Stats from '../examples/jsm/libs/stats.module.js';
-import { GLTFLoader } from '../examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from '../examples/jsm/controls/OrbitControls.js';
-import { RoomEnvironment } from '../examples/jsm/environments/RoomEnvironment.js';
-import { OutlineEffect } from '../examples/jsm/effects/OutlineEffect.js';
-import { DRACOLoader } from '../examples/jsm/loaders/DRACOLoader.js';
-import { GUI } from '../examples/jsm/libs/lil-gui.module.min.js';
-import { EffectComposer } from '../examples/jsm/postprocessing/EffectComposer.js';
-import { PixelShader } from '../examples/jsm/shaders/PixelShader.js';
-import { RenderPass } from '../examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from '../examples/jsm/postprocessing/ShaderPass.js';
-import { LDrawLoader } from '../examples/jsm/loaders/LDrawLoader.js';
-import { LDrawUtils } from '../examples/jsm/utils/LDrawUtils.js';
-import { CSS3DRenderer, CSS3DObject } from '../examples/jsm/renderers/CSS3DRenderer.js';
-import { LuminosityShader } from '../examples/jsm/shaders/LuminosityShader.js';
-import { SobelOperatorShader } from '../examples/jsm/shaders/SobelOperatorShader.js';
-import { OutlinePass } from '../examples/jsm/postprocessing/OutlinePass.js';
-import { TextureLoader } from '../src/loaders/TextureLoader.js';
-import { LoadingManager } from '../src/loaders/LoadingManager.js';
-import { UnrealBloomPass } from '../examples/jsm/postprocessing/UnrealBloomPass.js';
-import { Octree } from '../examples/jsm/math/Octree.js';
-import { OctreeHelper } from '../examples/jsm/helpers/OctreeHelper.js';
-import { Capsule } from '../examples/jsm/math/Capsule.js';
-import { Reflector } from '../examples/jsm/objects/Reflector.js';
-import { SSRPass } from '../examples/jsm/postprocessing/SSRPass.js';
-import { GammaCorrectionShader } from '../examples/jsm/shaders/GammaCorrectionShader.js';
-import { ReflectorForSSRPass } from '../examples/jsm/objects/ReflectorForSSRPass.js';
-import { FXAAShader } from '../examples/jsm/shaders/FXAAShader.js';
-import { PointerLockControls } from '../examples/jsm/controls/PointerLockControls.js';
-import { FirstPersonControls } from '../examples/jsm/controls/FirstPersonControls.js';
-import { RectAreaLightHelper } from '../examples/jsm/helpers/RectAreaLightHelper.js';
-import { RectAreaLightUniformsLib } from '../examples/jsm/lights/RectAreaLightUniformsLib.js';
-import { VideoTexture } from '../src/textures/VideoTexture.js';
-import { TrackballControls } from '../examples/jsm/controls/TrackballControls.js';
+import * as THREE from './build/three.module.js';
+import Stats from './examples/jsm/libs/stats.module.js';
+import { GLTFLoader } from './examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from './examples/jsm/controls/OrbitControls.js';
+import { RoomEnvironment } from './examples/jsm/environments/RoomEnvironment.js';
+import { OutlineEffect } from './examples/jsm/effects/OutlineEffect.js';
+import { DRACOLoader } from './examples/jsm/loaders/DRACOLoader.js';
+import { GUI } from './examples/jsm/libs/lil-gui.module.min.js';
+import { EffectComposer } from './examples/jsm/postprocessing/EffectComposer.js';
+import { PixelShader } from './examples/jsm/shaders/PixelShader.js';
+import { RenderPass } from './examples/jsm/postprocessing/RenderPass.js';
+import { ShaderPass } from './examples/jsm/postprocessing/ShaderPass.js';
+import { LDrawLoader } from './examples/jsm/loaders/LDrawLoader.js';
+import { LDrawUtils } from './examples/jsm/utils/LDrawUtils.js';
+import { CSS3DRenderer, CSS3DObject } from './examples/jsm/renderers/CSS3DRenderer.js';
+import { LuminosityShader } from './examples/jsm/shaders/LuminosityShader.js';
+import { SobelOperatorShader } from './examples/jsm/shaders/SobelOperatorShader.js';
+import { OutlinePass } from './examples/jsm/postprocessing/OutlinePass.js';
+import { TextureLoader } from './src/loaders/TextureLoader.js';
+import { LoadingManager } from './src/loaders/LoadingManager.js';
+import { UnrealBloomPass } from './examples/jsm/postprocessing/UnrealBloomPass.js';
+import { Octree } from './examples/jsm/math/Octree.js';
+import { OctreeHelper } from './examples/jsm/helpers/OctreeHelper.js';
+import { Capsule } from './examples/jsm/math/Capsule.js';
+import { Reflector } from './examples/jsm/objects/Reflector.js';
+import { SSRPass } from './examples/jsm/postprocessing/SSRPass.js';
+import { GammaCorrectionShader } from './examples/jsm/shaders/GammaCorrectionShader.js';
+import { ReflectorForSSRPass } from './examples/jsm/objects/ReflectorForSSRPass.js';
+import { FXAAShader } from './examples/jsm/shaders/FXAAShader.js';
+import { PointerLockControls } from './examples/jsm/controls/PointerLockControls.js';
+import { FirstPersonControls } from './examples/jsm/controls/FirstPersonControls.js';
+import { RectAreaLightHelper } from './examples/jsm/helpers/RectAreaLightHelper.js';
+import { RectAreaLightUniformsLib } from './examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { VideoTexture } from './src/textures/VideoTexture.js';
+import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
 
 var composer;
 let effect, pixelPass, textureLoader;
@@ -148,9 +148,9 @@ function load() {
     scene = new THREE.Scene();
     scene2 = new THREE.Scene();
     dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('./examples/js/libs/draco/gltf/');
+    dracoLoader.setDecoderPath('/examples/js/libs/draco/gltf/');
     loader.setDRACOLoader(dracoLoader);
-    loader.load('/asset/CryptoCity35b.gltf', function (gltf) {
+    loader.load('asset/CryptoCity35b.gltf', function (gltf) {
         mesh = gltf.scene;
         //mesh.position.y = - 0.3;
         mesh.scale.set(0.1, 0.1, 0.1);
@@ -262,7 +262,7 @@ function music() {
     const loader = new THREE.AudioLoader();
 
     // load a resource
-    loader.load('/asset/city.mp3',
+    loader.load('asset/city.mp3',
 
         // onLoad callback
         function (audioBuffer) {
@@ -298,7 +298,7 @@ function inityoutube(id, x, y, z, ry) {
 
 function initWebsite() {
     const textureVid = document.getElementById("video");
-    textureVid.src = '/asset/mhcToys.mp4';
+    textureVid.src = 'asset/mhcToys.mp4';
     textureVid.play();
 
     videoTexture = new VideoTexture(textureVid);
