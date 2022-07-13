@@ -1,0 +1,155 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metakota</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .progress-bar-container {
+            position: absolute;
+            left: 0%;
+            top: 0%;
+            transform: translate (-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #progress-bar {
+            width: 30%;
+            margin-top: 0.5%;
+            height: 2%;
+        }
+
+        label {
+            color: white;
+            font-size: 2rem;
+        }
+    </style>
+
+    <video id="video" autoplay loop webkit-playsinline style="display:none" muted="muted"></video>
+
+    <style>
+        .container {
+            margin-top: -20px
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #fffb00;
+        }
+
+
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+
+
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        #header {
+            background-color: black;
+            /*Opacity start*/
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+            filter: alpha(opacity=80);
+            -moz-opacity: 0.80;
+            -khtml-opacity: 0.8;
+            opacity: 1;
+            /*Opacity end*/
+
+            color: rgb(0, 0, 0);
+            position: fixed;
+            top: 10;
+            left: 10;
+            width: 100%;
+            height: 0;
+            padding: 0;
+            margin: 0;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Metakota</a>
+        <a href="./nftcenter.html">NFT Center</a>
+        <a href="#">How To Buy a Spot</a>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("container").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("container").style.marginLeft = "0";
+        }
+    </script>
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <canvas class="webgl"></canvas>
+    <div id="container">
+        <script type="module" src="nftcenter.js"></script>
+    </div>
+    <div class="progress-bar-container">
+        <laber for="progress-bar">Loading... </laber>
+        <progress id="progress-bar" value="0" max="100"></progress>
+
+</body>
+
+</html>
