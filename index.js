@@ -34,7 +34,6 @@ import { RectAreaLightUniformsLib } from './examples/jsm/lights/RectAreaLightUni
 import { VideoTexture } from './src/textures/VideoTexture.js';
 import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
 
-
 var composer;
 let effect, pixelPass, textureLoader;
 let gui, guiData;
@@ -57,7 +56,7 @@ let frustumSize = 1.5;
 let controls, container;
 var stats;
 let videoTexture;
-let ads1, ads2;
+let ads1, ads2, ads3;
 var raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 var mouse = new THREE.Vector2();
@@ -151,7 +150,7 @@ function load() {
     dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('./examples/js/libs/draco/gltf/');
     loader.setDRACOLoader(dracoLoader);
-    loader.load('/asset/CryptoCity35b.gltf', function (gltf) {
+    loader.load('/asset/metakota01.gltf', function (gltf) {
         mesh = gltf.scene;
         //mesh.position.y = - 0.3;
         mesh.scale.set(0.1, 0.1, 0.1);
@@ -193,10 +192,11 @@ function load() {
         });
 
         //STATS
-        stats = new Stats();
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.top = '0px';
-        container.appendChild(stats.domElement);
+        /*  stats = new Stats();
+         stats.domElement.style.position = 'absolute';
+         stats.domElement.style.top = '0px';
+         container.appendChild(stats.domElement); */
+        //STATS END
 
         // scene.add(floor);
         // scene.fog = new THREE.Fog(0x88ccee, 5.5, 10);
@@ -228,7 +228,7 @@ function init() {
     initCamera();
     initScene();
     initRenderer();
-    music();
+    //  music();
     // inityoutube(); //MUST USE CSS3D Renderer
     //initFps();
     initControl();
@@ -322,6 +322,13 @@ function initWebsite() {
     ads2.rotation.y = - Math.PI / 3.8;
     scene.add(ads2);
 
+    const plane3 = new THREE.PlaneGeometry(0.2, 0.1, 1, 1);
+    const mat3 = new THREE.MeshLambertMaterial({ color: 0x0000ff, opacity: 0, transparent: true });
+    ads3 = new THREE.Mesh(plane3, mat3);
+    ads3.position.set(1.2, 0.48, -0.68);
+    ads3.rotation.y = - Math.PI / 0.77;
+    scene.add(ads3);
+
 }
 
 function initScene() {
@@ -345,7 +352,7 @@ function initScene() {
     dirLight.shadow.camera.far = 100;
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
-    scene.add(dirLight);
+    //scene.add(dirLight);
 
     const light = new THREE.DirectionalLight(0xffffff, 2); //Blue
     light.position.set(1.12, 0.35, -0.73);
@@ -353,12 +360,10 @@ function initScene() {
 
     // scene.add(light);
 
-
     const light2 = new THREE.DirectionalLight(0xFF00FF, 1); // pink
     light2.position.set(2, 2, -1);
     //light2.castShadow = true;
     //scene.add(light2);
-
 
     const mainLight = new THREE.PointLight(0xffffff, 5, 2);
     mainLight.position.y = 10;
@@ -373,7 +378,7 @@ function initScene() {
         emissiveIntensity: 1,
         color: 0x000000
     });
-    bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
+    //bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
     bulbLight.position.set(0.39, 0.2, -0.80);
     bulbLight.castShadow = true;
     bulbLight.power = 50;
@@ -386,7 +391,7 @@ function initScene() {
         emissiveIntensity: 1,
         color: 0x000000
     });
-    bulbLight1.add(new THREE.Mesh(bulbGeometry1, bulbMat1));
+    //bulbLight1.add(new THREE.Mesh(bulbGeometry1, bulbMat1));
     bulbLight1.position.set(0.30, 0.7, -0.80);
     bulbLight1.castShadow = true;
     bulbLight1.power = 10;
@@ -401,7 +406,7 @@ function initScene() {
         emissiveIntensity: 1,
         color: 0x000000
     });
-    bulbLight2.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
+    //bulbLight2.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
     bulbLight2.position.set(0, 0.2, 1);
     bulbLight2.castShadow = true;
     bulbLight2.power = 50;
@@ -414,7 +419,7 @@ function initScene() {
         emissiveIntensity: 1,
         color: 0x000000
     });
-    bulbLight3.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
+    // bulbLight3.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
     bulbLight3.position.set(-1, 1, -2);
     bulbLight3.castShadow = true;
     // bulbLight3.shadowMapHeight = 1600;
@@ -429,7 +434,7 @@ function initScene() {
         emissiveIntensity: 1,
         color: 0x000000
     });
-    bulbLight4.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
+    //bulbLight4.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
     bulbLight4.position.set(2, 0.2, -2);
     bulbLight4.castShadow = true;
     bulbLight4.power = 50;
@@ -442,11 +447,11 @@ function initScene() {
         emissiveIntensity: 0.1,
         color: 0x000000
     });
-    bulbLight5.add(new THREE.Mesh(bulbGeometry5, bulbMat5));
-    bulbLight5.position.set(1.02, 1, -1.2);
-    bulbLight5.castShadow = true;
-    bulbLight5.power = 100;
-    scene.add(bulbLight5);
+    // bulbLight5.add(new THREE.Mesh(bulbGeometry5, bulbMat5));
+    bulbLight5.position.set(1.02, 0.7, -1.2);
+    //bulbLight5.castShadow = true;
+    bulbLight5.power = 50;
+    // scene.add(bulbLight5); //AirBaloon
 
     const bulbGeometry6 = new THREE.SphereGeometry(0.02, 16, 8);
     const bulbLight6 = new THREE.PointLight(0xffffff, 0.1, 50, 10);
@@ -519,7 +524,7 @@ function initRenderer() {
 
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     //renderer.setClearColor(clearColor);
-    renderer.setPixelRatio(window.devicePixelRatio * 0.9);
+    renderer.setPixelRatio(window.devicePixelRatio * 1);
     renderer.setSize(window.innerWidth, window.innerHeight);
     //renderer.outputEncoding = THREE.sRGBEncoding; //Bright 
     renderer.shadowMap.enabled = true;
@@ -528,8 +533,8 @@ function initRenderer() {
     renderer.shadowMap.autoUpdate = true;
     renderer.receiveShadow = true;
 
-    //renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    //renderer.toneMapping = THREE.ReinhardToneMapping;
     //renderer.toneMapping = THREE.CineonToneMapping
     container.appendChild(renderer.domElement);
 
@@ -544,6 +549,49 @@ function initRenderer() {
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', onClick);
 
+}
+
+function initComposer() {
+    var renderPass, copyPass;
+    //BLOOM
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    bloomPass.threshold = 0.5;
+    bloomPass.strength = 0.4;
+    bloomPass.radius = 0.2;
+    renderer.toneMappingExposure = 0.6;
+
+    const renderScene = new RenderPass(scene, camera);
+
+    effect = new OutlineEffect(renderer, {
+        defaultThickness: 0.003, defaultKeepAlive: false
+    });
+
+
+    composer = new EffectComposer(renderer);
+    composer.addPass(renderScene);
+    composer.addPass(bloomPass);
+    //composer.addPass(effectFXAA);
+
+
+
+
+
+    //REFLECTION 100% COMPOSER
+    /*   ssrPass = new SSRPass({
+          renderer,
+          scene,
+          camera,
+          width: innerWidth,
+          height: innerHeight,
+          groundReflector: params.groundReflector ? groundReflector : null,
+          selects: params.groundReflector ? selects : null
+      });
+      groundReflector.distanceAttenuation = ssrPass.distanceAttenuation;
+      ssrPass.maxDistance = .1;
+      groundReflector.maxDistance = ssrPass.maxDistance;
+      composer.addPass(ssrPass);
+      composer.addPass(new ShaderPass(GammaCorrectionShader)); */
+    //REFLECTION ENDED
 }
 
 function onPointerMove(event) {
@@ -604,56 +652,18 @@ function onClick(event) {
 
             window.open('https://twitter.com/metaheroesclub', intersects[0].objects);
 
-        if (selectedPiece == ads2)
-            window.open('https://www.roblox.com/', intersects[0].objects);
+        /*  if (selectedPiece == ads2)
+             window.open('https://www.roblox.com/', intersects[0].objects); */
+
+        if (selectedPiece == ads3)
+            window.open('https://www.metakota.net/nftcenter/', intersects[0].objects);
     }
 }
 
 /*  camera.position.x = mouse.x;
  camera.position.z = mouse.y; */
 
-function initComposer() {
-    var renderPass, copyPass;
-    //BLOOM
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    bloomPass.threshold = 0.3;
-    bloomPass.strength = 0.5;
-    bloomPass.radius = 0.1;
-    renderer.toneMappingExposure = 0.8;
 
-    const renderScene = new RenderPass(scene, camera);
-
-    effect = new OutlineEffect(renderer, {
-        defaultThickness: 0.005, defaultKeepAlive: false
-    });
-
-
-    composer = new EffectComposer(renderer);
-    composer.addPass(renderScene);
-    composer.addPass(bloomPass);
-    //composer.addPass(effectFXAA);
-
-
-
-
-
-    //REFLECTION 100% COMPOSER
-    /*   ssrPass = new SSRPass({
-          renderer,
-          scene,
-          camera,
-          width: innerWidth,
-          height: innerHeight,
-          groundReflector: params.groundReflector ? groundReflector : null,
-          selects: params.groundReflector ? selects : null
-      });
-      groundReflector.distanceAttenuation = ssrPass.distanceAttenuation;
-      ssrPass.maxDistance = .1;
-      groundReflector.maxDistance = ssrPass.maxDistance;
-      composer.addPass(ssrPass);
-      composer.addPass(new ShaderPass(GammaCorrectionShader)); */
-    //REFLECTION ENDED
-}
 
 function initControl() {
     controls = new OrbitControls(camera, renderer.domElement);
@@ -704,7 +714,7 @@ function animate() {
     // resetMaterials() //for hover mode only
     //   hoverPieces();
     render(delta);
-    stats.update();
+    // stats.update();
 
 
 
@@ -743,3 +753,4 @@ function render(delta) {
     //ROTATE CAMERA END
 
 }
+
