@@ -533,7 +533,7 @@ function initRenderer() {
     //renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.shadowMap.autoUpdate = true;
     renderer.receiveShadow = true;
-renderer.xr.enabled = true;
+    //renderer.xr.enabled = true;  FOR VR
 
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     //renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -547,10 +547,12 @@ renderer.xr.enabled = true;
 
     //  renderer.setClearColor(clearColor);
     document.body.appendChild(renderer.domElement);
-	document.body.appendChild(VRButton.createButton(renderer));
+	// document.body.appendChild(VRButton.createButton(renderer));  FOR VR
     window.addEventListener('resize', onWindowResize);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', onClick);
+    
+//    renderer.setAnimationLoop( function () {renderer.render( scene, camera );} ); FOR VR
 
 }
 
