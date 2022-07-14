@@ -33,6 +33,7 @@ import { RectAreaLightHelper } from './examples/jsm/helpers/RectAreaLightHelper.
 import { RectAreaLightUniformsLib } from './examples/jsm/lights/RectAreaLightUniformsLib.js';
 import { VideoTexture } from './src/textures/VideoTexture.js';
 import { TrackballControls } from './examples/jsm/controls/TrackballControls.js';
+import { VRButton } from './examples/jsm/webxr/VRButton.js';
 
 var composer;
 let effect, pixelPass, textureLoader;
@@ -532,6 +533,7 @@ function initRenderer() {
     //renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.shadowMap.autoUpdate = true;
     renderer.receiveShadow = true;
+renderer.xr.enabled = true;
 
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     //renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -545,6 +547,7 @@ function initRenderer() {
 
     //  renderer.setClearColor(clearColor);
     document.body.appendChild(renderer.domElement);
+	document.body.appendChild(VRButton.createButton(renderer));
     window.addEventListener('resize', onWindowResize);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', onClick);
