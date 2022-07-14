@@ -151,7 +151,7 @@ function load() {
     dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('./examples/js/libs/draco/gltf/');
     loader.setDRACOLoader(dracoLoader);
-    loader.load('/asset/metakota01.gltf', function (gltf) {
+    loader.load('/asset/metakota02.gltf', function (gltf) {
         mesh = gltf.scene;
         //mesh.position.y = - 0.3;
         mesh.scale.set(0.1, 0.1, 0.1);
@@ -193,14 +193,14 @@ function load() {
         });
 
         //STATS
-        /*  stats = new Stats();
-         stats.domElement.style.position = 'absolute';
-         stats.domElement.style.top = '0px';
-         container.appendChild(stats.domElement); */
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.top = '0px';
+        container.appendChild(stats.domElement);
         //STATS END
 
         // scene.add(floor);
-        // scene.fog = new THREE.Fog(0x88ccee, 5.5, 10);
+        // scene.fog = new THREE.Fog(0xffffff, 6.5, 11);
 
         //REFLECTION START 100% working
         /* const geometry = new THREE.PlaneGeometry(4, 4);
@@ -345,20 +345,19 @@ function initScene() {
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(4, 4, 4);
-    //dirLight.castShadow = true;
-
+    dirLight.castShadow = true;
+    dirLight.power = 10;
     dirLight.distance = 100;
     dirLight.angle = Math.PI * 0.2;
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 100;
     dirLight.shadow.mapSize.width = 2048;
     dirLight.shadow.mapSize.height = 2048;
-    //scene.add(dirLight);
+    // scene.add(dirLight);
 
     const light = new THREE.DirectionalLight(0xffffff, 2); //Blue
     light.position.set(1.12, 0.35, -0.73);
     light.castShadow = true;
-
     // scene.add(light);
 
     const light2 = new THREE.DirectionalLight(0xFF00FF, 1); // pink
@@ -396,7 +395,7 @@ function initScene() {
     bulbLight1.position.set(0.30, 0.7, -0.80);
     bulbLight1.castShadow = true;
     bulbLight1.power = 10;
-    scene.add(bulbLight1);
+    // scene.add(bulbLight1);
 
 
 
@@ -409,7 +408,7 @@ function initScene() {
     });
     //bulbLight2.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
     bulbLight2.position.set(0, 0.2, 1);
-    bulbLight2.castShadow = true;
+    // bulbLight2.castShadow = true;
     bulbLight2.power = 50;
     scene.add(bulbLight2);
 
@@ -425,8 +424,8 @@ function initScene() {
     bulbLight3.castShadow = true;
     // bulbLight3.shadowMapHeight = 1600;
     //bulbLight3.shadowMapWidth = 1600;
-    bulbLight3.power = 50;
-    scene.add(bulbLight3);
+    bulbLight3.power = 30;
+    scene.add(bulbLight3); //OVER BRIDGE
 
     const bulbGeometry4 = new THREE.SphereGeometry(0.02, 16, 8);
     const bulbLight4 = new THREE.PointLight(0x00008B, 1, 100, 10);
@@ -437,7 +436,7 @@ function initScene() {
     });
     //bulbLight4.add(new THREE.Mesh(bulbGeometry2, bulbMat2));
     bulbLight4.position.set(2, 0.2, -2);
-    bulbLight4.castShadow = true;
+    //bulbLight4.castShadow = true;
     bulbLight4.power = 50;
     scene.add(bulbLight4);
 
@@ -480,7 +479,7 @@ function initScene() {
 
     const spotLight2 = new THREE.SpotLight(0xFFA500, 15);
     spotLight2.position.set(0.47, 0.5, -0.17);
-    spotLight2.castShadow = true;
+    // spotLight2.castShadow = true;
     spotLight2.angle = 0.5;
     spotLight2.penumbra = 1;
     spotLight2.decay = 0.2;
@@ -491,7 +490,7 @@ function initScene() {
 
     const spotLight3 = new THREE.SpotLight(0xFFA500, 8);
     spotLight3.position.set(0.84, 0.7, -1.4);
-    spotLight3.castShadow = true;
+    //spotLight3.castShadow = true;
     spotLight3.angle = 0.3;
     spotLight3.penumbra = 1;
     spotLight3.decay = 0.2;
@@ -533,7 +532,7 @@ function initRenderer() {
     //renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.shadowMap.autoUpdate = true;
     renderer.receiveShadow = true;
-    //renderer.xr.enabled = true;  FOR VR
+
 
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     //renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -547,13 +546,19 @@ function initRenderer() {
 
     //  renderer.setClearColor(clearColor);
     document.body.appendChild(renderer.domElement);
-	// document.body.appendChild(VRButton.createButton(renderer));  FOR VR
     window.addEventListener('resize', onWindowResize);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', onClick);
-    
-//    renderer.setAnimationLoop( function () {renderer.render( scene, camera );} ); FOR VR
 
+
+    //VR MODE
+    /* renderer.xr.enabled = true;
+    document.body.appendChild(VRButton.createButton(renderer));
+    renderer.setAnimationLoop( function () {
+
+        renderer.render( scene, camera );
+    
+    } ); */
 }
 
 function initComposer() {
@@ -661,26 +666,22 @@ function onClick(event) {
              window.open('https://www.roblox.com/', intersects[0].objects); */
 
         if (selectedPiece == ads3)
-            window.open('https://www.metakota.net/nftcenter/', intersects[0].objects);
+            window.open('https://www.metakota.net/nftcenter.html/', intersects[0].objects);
     }
 }
-
 /*  camera.position.x = mouse.x;
  camera.position.z = mouse.y; */
-
-
 
 function initControl() {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0.7, 0.5, -1);
     controls.update();
-    controls.enablePan = false;
+    controls.enablePan = true;
     controls.enableDamping = true;
     controls.minZoom = 0.4;
     controls.maxZoom = 2;
     controls.minPolarAngle = 0; // radians
     controls.maxPolarAngle = 1.55; // radians
-
 }
 
 function initFps() {
@@ -691,7 +692,7 @@ function initFps() {
 }
 function onWindowResize() {
 
-   const aspect = window.innerWidth / window.innerHeight;
+    const aspect = window.innerWidth / window.innerHeight;
 
     camera.left = - frustumSize * aspect / 2;
     camera.right = frustumSize * aspect / 2;
@@ -730,10 +731,7 @@ function animate() {
     // resetMaterials() //for hover mode only
     //   hoverPieces();
     render(delta);
-    // stats.update();
-
-
-
+    stats.update();
 
 }
 
@@ -746,8 +744,6 @@ function render(delta) {
 
     controls.update(clock.getDelta());
     effect.render(scene, camera);
-
-
 
     //ROTATE CAMERA
 
