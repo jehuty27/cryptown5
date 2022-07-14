@@ -686,16 +686,27 @@ function initFps() {
 }
 function onWindowResize() {
 
-    const aspect = window.innerWidth / window.innerHeight;
+   const aspect = window.innerWidth / window.innerHeight;
 
     camera.left = - frustumSize * aspect / 2;
     camera.right = frustumSize * aspect / 2;
     camera.top = frustumSize / 2;
     camera.bottom = - frustumSize / 2;
 
-    camera.updateProjectionMatrix();
+    //NEW CODE
+    const canvas = renderer.domElement;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    if (canvas.width !== width || canvas.height !== height) {
+        // you must pass false here or three.js sadly fights the browser
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+    }
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.updateProjectionMatrix();
+    // renderer.setSize(window.innerWidth, window.innerHeight);
+
+    renderer.setSize(width, height);
 
     // controls.handleResize();
 };
