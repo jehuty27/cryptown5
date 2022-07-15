@@ -193,10 +193,10 @@ function load() {
         });
 
         //STATS
-        stats = new Stats();
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.top = '0px';
-        container.appendChild(stats.domElement);
+      //  stats = new Stats();
+        //stats.domElement.style.position = 'absolute';
+        //stats.domElement.style.top = '0px';
+        //container.appendChild(stats.domElement);
         //STATS END
 
         // scene.add(floor);
@@ -731,7 +731,7 @@ function animate() {
     // resetMaterials() //for hover mode only
     //   hoverPieces();
     render(delta);
-    stats.update();
+   // stats.update();
 
 }
 
