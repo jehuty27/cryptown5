@@ -666,7 +666,7 @@ function onClick(event) {
              window.open('https://www.roblox.com/', intersects[0].objects); */
 
         if (selectedPiece == ads3)
-            window.open('https://www.metakota.net/nftcenter.html/', intersects[0].objects);
+           window.open('./nftcenter.html', intersects[0].objects);
     }
 }
 /*  camera.position.x = mouse.x;
