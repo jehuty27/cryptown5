@@ -58,6 +58,7 @@ let controls, container;
 var stats;
 let videoTexture;
 let ads1, ads2, ads3;
+let gridBlocks8, gridBlocks12;
 var raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 var mouse = new THREE.Vector2();
@@ -329,6 +330,16 @@ function initWebsite() {
     ads3.position.set(1.2, 0.48, -0.68);
     ads3.rotation.y = - Math.PI / 0.77;
     scene.add(ads3);
+	
+	const plane4 = new THREE.PlaneGeometry(0.322, 0.475, 1, 1);
+    const gridBlocktex = new THREE.TextureLoader().load('./asset/GridBlocks8.png');
+    // immediately use the texture for material creation
+    const mat4 = new THREE.MeshBasicMaterial({ map: gridBlocktex });
+    gridBlocks8 = new THREE.Mesh(plane4, mat4);
+    gridBlocks8.position.set(1.03, 0.517, -0.3191);
+    //gridBlocks8.rotation.y = - Math.PI / 0.12;
+    scene.add(gridBlocks8);
+
 
 }
 
