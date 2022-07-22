@@ -152,7 +152,7 @@ function load() {
     dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('./examples/js/libs/draco/gltf/');
     loader.setDRACOLoader(dracoLoader);
-    loader.load('/asset/metakota02.gltf', function (gltf) {
+    loader.load('/asset/metakota03.gltf', function (gltf) {
         mesh = gltf.scene;
         //mesh.position.y = - 0.3;
         mesh.scale.set(0.1, 0.1, 0.1);
