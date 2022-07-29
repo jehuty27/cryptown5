@@ -82,11 +82,11 @@ const fillLight1 = new THREE.HemisphereLight(0x4488bb, 0x002244, 0.5);
 fillLight1.position.set(2, 1, 1);
 //scene.add(fillLight1);
 
-const Amlight = new THREE.AmbientLight(0x404040, 2); // soft white light
+const Amlight = new THREE.AmbientLight(0x404040, 0.8); // soft white light
 scene.add(Amlight);
 
 const bulbGeometry = new THREE.SphereGeometry(0.02, 16, 8);
-const bulbLight = new THREE.PointLight(0xFFFDD0, 1, 100, 20);
+const bulbLight = new THREE.PointLight(0x7400F6, 1, 100, 20);
 const bulbMat = new THREE.MeshStandardMaterial({
     emissive: 0xffffee,
     emissiveIntensity: 1,
@@ -95,7 +95,7 @@ const bulbMat = new THREE.MeshStandardMaterial({
 bulbLight.add(new THREE.Mesh(bulbGeometry, bulbMat));
 bulbLight.position.set(3, 5, -0.80);
 bulbLight.castShadow = true;
-bulbLight.power = 20;
+bulbLight.power = 10;
 bulbLight.distance = 100;
 bulbLight.angle = Math.PI * 0.2;
 bulbLight.shadow.camera.near = 0.1;
@@ -124,17 +124,32 @@ bulbLight2.shadow.mapSize.height = 1024;
 scene.add(bulbLight2); // Left
 
 const bulbGeometry1 = new THREE.SphereGeometry(0.02, 16, 8);
-const bulbLight1 = new THREE.PointLight(0xFF00FF, 1, 100, 20);
+const bulbLight1 = new THREE.PointLight(0x00FFFF, 1, 100, 20);
 const bulbMat1 = new THREE.MeshStandardMaterial({
     emissive: 0xffffee,
     emissiveIntensity: 1,
     color: 0x000000
 });
-bulbLight1.add(new THREE.Mesh(bulbGeometry1, bulbMat1));
-bulbLight1.position.set(0, 2, -10);
+bulbLight1.add(new THREE.Mesh());
+bulbLight1.position.set(0, 3, -12);
 bulbLight1.castShadow = true;
-bulbLight1.power = 40;
-scene.add(bulbLight1); //Back
+bulbLight1.power = 5;
+scene.add(bulbLight1); //Museum
+
+const bulbGeometry3 = new THREE.SphereGeometry(1, 16, 8);
+const bulbLight3 = new THREE.PointLight(0x0000ff, 1, 100, 1);
+const bulbMat3 = new THREE.MeshStandardMaterial({
+    emissive: 0xffffee,
+    emissiveIntensity: 1,
+    color: 0x000000
+});
+// bulbLight3.add(new THREE.Mesh(bulbGeometry2, bulbMat2));wa
+bulbLight3.position.set(0.3, 3, -15);
+//bulbLight3.castShadow = true;
+// bulbLight3.shadowMapHeight = 1600;
+//bulbLight3.shadowMapWidth = 1600;
+bulbLight3.power = 10;
+//scene.add(bulbLight3); //OVER BRIDGE
 
 
 
@@ -224,7 +239,7 @@ container.addEventListener('mousedown', () => {
 
 document.addEventListener('mouseup', () => {
 
-    //  if (document.pointerLockElement !== null) throwBall();
+    // if (document.pointerLockElement !== null) throwBall();
 
 });
 
@@ -528,7 +543,7 @@ function controls(deltaTime) {
 
 
 const loader = new GLTFLoader(manager);
-loader.load('/asset/nftcenter.gltf', (gltf) => {
+loader.load('/asset/nftcenter_v1.gltf', (gltf) => {
 
     scene.add(gltf.scene);
 
