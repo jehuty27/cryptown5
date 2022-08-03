@@ -181,7 +181,7 @@ bulbLight3.power = 10;
 
 
 
-const container = document.getElementById('container');
+const container = document.getElementById('container3d');
 
 const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
