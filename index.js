@@ -671,7 +671,7 @@ function onClick(event) {
 
         if (selectedPiece == ads1)
 
-            window.open('https://web.curate.style/nft/f81f0ff5ab20e2d28f29541f', intersects[0].objects);
+            window.open('https://exchange.art/series/Meta%20Angelus/nfts', intersects[0].objects);
 
         /*  if (selectedPiece == ads2)
              window.open('https://www.roblox.com/', intersects[0].objects); */
